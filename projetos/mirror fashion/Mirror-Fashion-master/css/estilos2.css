@@ -1,0 +1,86 @@
+/* Folha de estilos do site da empresa Mirror Fashion */
+
+/* Estilos do corpo, titulos e paragrafos*/
+body {
+	color: #333333;
+	font-family: "Lucida Sans Unicode","Lucida Grande", sans-serif;
+	margin-left: auto;
+	margin-right: auto;
+	width: 940px;
+}
+
+h1 {
+	padding: 10px;
+}
+
+h2 {
+	border-bottom: 2px solid #333333;
+	margin-top: 30px;
+	font-weight: bold;
+}
+
+p {
+	padding: 0 45px;
+	text-indent: 15px;
+	margin: 10px 0 0 0;
+}
+
+ul {
+	margin: 10px 0 0 0;
+}
+
+/* Estilos das figuras */
+figure {
+	padding: 15px;
+	margin: 30px;
+	background-color: #F2EDED;
+	border: 1px dotted #ccc;
+	text-align: center;
+}
+
+figcaption {
+	margin-top: 10px;
+	font-style: italic;
+}
+
+p::first-letter {
+	font-weight: bold;
+}
+
+h1 + p {
+	text-indent: 0;
+}
+
+p::first-line {
+	font-variant: small-caps;
+}
+
+not(p) + p::first-line {
+	font-variant: small-caps;
+}
+/* Estilo da figura do centro de distribuição */
+#centro-distribuicao {
+	margin-left: auto;
+	margin-right: auto;
+	width: 550px;
+}
+
+/* Estilos do rodapé */
+#rodape {
+	color:#777;
+	margin: 30px 0;
+	padding: 30px 0;
+}
+
+#rodape img {
+	margin-right: 30px;
+	vertical-align: middle;
+	width: 94px;
+}
+
+/*Estilos da historia*/
+#familia-pelho {
+	float: right;
+	margin: 10px 0 10px 10px;
+}
+
