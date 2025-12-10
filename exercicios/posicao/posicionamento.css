@@ -12,8 +12,13 @@
     height: 100px;
 }
 
+body {
+    position: relative;
+    min-height: 100vh;
+}
+
 .esqbaixo > p {
-    position: fixed;
+    position: absolute;
     bottom: 0;
     left: 0;
     border: 1px solid black;
