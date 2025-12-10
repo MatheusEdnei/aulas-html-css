@@ -1,0 +1,66 @@
+h1#autor {
+    border: 1px solid black;
+    position: relative;
+    top: 50%;
+    left: 80%;
+    display: inline-block;
+    /* bottom: ;
+    left: ;
+    right: ; */
+}
+
+h1#titulo {
+    display: inline-block;
+    position: relative;
+    left: 0%;
+}
+
+section#conteudo {
+    position: relative;
+    display: inline-block;
+    left: 25%;
+    bottom: 150px;
+    border: 1px solid black;
+    width: 200px;
+    height: 200px;
+}
+
+section#conteudo2 {
+    position: relative;
+    display: inline-block;
+    left: 40%;
+    border: 1px solid black;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 1000px;
+}
+
+/* section#conteudo3 {
+    position: fixed;
+    top: 500px;
+    left: 50px;
+    border: 1px solid black;
+    width: 200px;
+    height: 200px;
+} */
+
+footer {
+    position: fixed;
+    bottom: 0px;
+    border: 1px solid red;
+    width: 100px;
+    height: 100px;
+}
+
+nav {
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    background-color: gray;
+}
+
+div#aviso {
+    position: fixed;
+    left: 0px;
+    bottom: 200px;
+}
