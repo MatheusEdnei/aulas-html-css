@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria com Overlay e Zoom</title>
+    <link rel="stylesheet" href="galeria.css">
+</head>
+<body>
+    <!-- Barra de progresso do scroll -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Botão flutuante de ação -->
+    <button class="floating-action-btn" onclick="uploadImage()">
+        📷
+        <span class="fab-tooltip">Adicionar Foto</span>
+    </button>
+
+    <!-- Indicador de posição -->
+    <div class="position-indicator">
+        Posição: <span id="position">0px, 0px</span>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="main-header">
+            <h1>📸 Galeria de Imagens</h1>
+            <p>Passe o mouse sobre as imagens para ver efeitos</p>
+        </header>
+
+        <!-- Galeria -->
+        <div class="gallery">
+            <!-- Imagem 1 com badge -->
+            <div class="gallery-item" onclick="openModal('Imagem 1 - Aurora Boreal')">
+                <span class="featured-badge">Destaque</span>
+                <div class="overlay">
+                    <h3>Aurora Boreal</h3>
+                    <p>Noruega - Foto por João Silva</p>
+                </div>
+                <div style="width:100%;height:100%;background:linear-gradient(135deg,#0f3460,#533483);"></div>
+            </div>
+
+            <!-- Imagem 2 -->
+            <div class="gallery-item" onclick="openModal('Imagem 2 - Montanhas')">
+                <div class="overlay">
+                    <h3>Montanhas Alpinas</h3>
+                    <p>Suíça - Foto por Maria Santos</p>
+                </div>
+                <div style="width:100%;height:100%;background:linear-gradient(135deg,#1a5f7a,#57c5b6);"></div>
+            </div>
+
+            <!-- Imagem 3 -->
+            <div class="gallery-item" onclick="openModal('Imagem 3 - Floresta')">
+                <div class="overlay">
+                    <h3>Floresta Tropical</h3>
+                    <p>Amazonas - Foto por Pedro Costa</p>
+                </div>
+                <div style="width:100%;height:100%;background:linear-gradient(135deg,#2a9d8f,#e9c46a);"></div>
+            </div>
+
+            <!-- Imagem 4 -->
+            <div class="gallery-item" onclick="openModal('Imagem 4 - Deserto')">
+                <div class="overlay">
+                    <h3>Deserto do Saara</h3>
+                    <p>África - Foto por Ana Lima</p>
+                </div>
+                <div style="width:100%;height:100%;background:linear-gradient(135deg,#e76f51,#f4a261);"></div>
+            </div>
+
+            <!-- Imagem 5 -->
+            <div class="gallery-item" onclick="openModal('Imagem 5 - Oceano')">
+                <div class="overlay">
+                    <h3>Oceano Pacífico</h3>
+                    <p>Havaí - Foto por Carlos Oliveira</p>
+                </div>
+                <div style="width:100%;height:100%;background:linear-gradient(135deg,#264653,#2a9d8f);"></div>
+            </div>
+
+            <!-- Imagem 6 com badge -->
+            <div class="gallery-item" onclick="openModal('Imagem 6 - Cidade')">
+                <span class="featured-badge">Novo</span>
+                <div class="overlay">
+                    <h3>Cidade Noturna</h3>
+                    <p>Tóquio - Foto por Yuki Tanaka</p>
+                </div>
+                <div style="width:100%;height:100%;background:linear-gradient(135deg,#7209b7,#3a0ca3);"></div>
+            </div>
+        </div>
+
+        <!-- Card informativo -->
+        <div class="info-card">
+            <h3>💡 Como usar a galeria</h3>
+            <p>• Passe o mouse para ver detalhes</p>
+            <p>• Clique para ampliar a imagem</p>
+            <p>• Use as setas para navegar</p>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="image-modal" id="imageModal">
+        <button class="modal-close" onclick="closeModal()">×</button>
+        
+        <div class="modal-nav">
+            <button class="nav-btn" onclick="prevImage()">❮</button>
+            <button class="nav-btn" onclick="nextImage()">❯</button>
+        </div>
+        
+        <div id="modalContent">
+            <!-- Conteúdo do modal será injetado aqui -->
+        </div>
+    </div>
+
+    <script>
+        let currentImageIndex = 0;
+        const images = [
+            'Imagem 1 - Aurora Boreal',
+            'Imagem 2 - Montanhas',
+            'Imagem 3 - Floresta',
+            'Imagem 4 - Deserto',
+            'Imagem 5 - Oceano',
+            'Imagem 6 - Cidade'
+        ];
+
+        // Rastreia posição do mouse
+        document.addEventListener('mousemove', (e) => {
+            document.getElementById('position').textContent = `${e.pageX}px, ${e.pageY}px`;
+        });
+
+        // Barra de progresso do scroll
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('scrollProgress').style.width = scrolled + "%";
+        });
+
+        function openModal(imageName) {
+            currentImageIndex = images.indexOf(imageName);
+            const modal = document.getElementById('imageModal');
+            const content = document.getElementById('modalContent');
+            
+            content.innerHTML = `
+                <h2 style="text-align:center;margin-bottom:20px;">${imageName}</h2>
+                <div style="width:500px;height:300px;background:linear-gradient(135deg,#0f3460,#533483);border-radius:10px;margin:0 auto;"></div>
+                <p style="text-align:center;margin-top:20px;">Imagem em alta resolução</p>
+            `;
+            
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').classList.remove('active');
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            openModal(images[currentImageIndex]);
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            openModal(images[currentImageIndex]);
+        }
+
+        function uploadImage() {
+            alert('Funcionalidade de upload seria implementada aqui!');
+        }
+
+        // Fecha modal com ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>

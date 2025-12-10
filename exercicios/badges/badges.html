@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 1: Badges e Indicadores</title>
+    <link rel="stylesheet" href="badges.css">
+</head>
+<body>
+    <div class="container">
+        <h1>📌 Exercício 1: Position em CSS</h1>
+        
+        <div class="instructions">
+            <h3>Conceitos Básicos:</h3>
+            <ul>
+                <li><strong>relative</strong>: Posiciona em relação à sua posição normal</li>
+                <li><strong>absolute</strong>: Posiciona em relação ao ancestral posicionado mais próximo</li>
+                <li><strong>fixed</strong>: Posiciona em relação à janela do navegador</li>
+                <li><strong>sticky</strong>: Alterna entre relative e fixed baseado no scroll</li>
+            </ul>
+        </div>
+
+        <!-- Exemplo 1: Badge -->
+        <h2>1. Badge em um Cartão</h2>
+        <p>A badge está posicionada absolutamente em relação ao cartão.</p>
+        <div class="card">
+            <div class="badge">3</div>
+            <h3>Novas Mensagens</h3>
+            <p>Você tem novas notificações não lidas.</p>
+        </div>
+
+        <!-- Exemplo 2: Ícone no Input -->
+        <h2>2. Ícone dentro do Input</h2>
+        <p>O ícone está posicionado absolutamente dentro do container do input.</p>
+        <div class="input-container">
+            <input type="text" placeholder="Digite sua pesquisa...">
+            <span class="input-icon">🔍</span>
+        </div>
+
+        <!-- Exemplo 3: Tooltip -->
+        <h2>3. Tooltip ao Passar o Mouse</h2>
+        <p>O tooltip aparece acima do elemento quando passa o mouse.</p>
+        <div class="tooltip-box">
+            Passe o mouse aqui
+            <div class="tooltip">
+                Esta é uma dica de ajuda que aparece ao passar o mouse!
+            </div>
+        </div>
+
+        <!-- Exemplo 4: Cabeçalho Sticky -->
+        <h2>4. Cabeçalho Fixo ao Rolar</h2>
+        <p>Role a página para ver o cabeçalho fixar no topo.</p>
+        <div class="sticky-header">
+            🔒 Este cabeçalho fica fixo quando você rola
+        </div>
+
+        <!-- Área de exercícios práticos -->
+        <div class="practice-area">
+            <h2>🧪 Exercícios Práticos</h2>
+            
+            <div class="exercise">
+                <h3>Exercício A: Criar um botão com ícone</h3>
+                <p>Crie um botão com um ícone posicionado à direita.</p>
+                <div style="position: relative; display: inline-block;">
+                    <button style="padding: 10px 40px 10px 20px; background: #3498db; color: white; border: none; border-radius: 5px;">
+                        Clique aqui
+                    </button>
+                    <!-- Seu código aqui -->
+                    <span style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: white;">→</span>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h3>Exercício B: Criar um selo "Novo"</h3>
+                <p>Adicione um selo "NOVO" no canto superior direito de uma caixa.</p>
+                <div style="position: relative; width: 200px; padding: 20px; background: #ecf0f1; border-radius: 5px;">
+                    <h4>Produto em Promoção</h4>
+                    <p>R$ 99,90</p>
+                    <!-- Seu código aqui -->
+                    <div style="position: absolute; top: -10px; right: -10px; background: #e74c3c; color: white; padding: 5px 10px; border-radius: 3px; font-size: 12px; font-weight: bold;">NOVO</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exemplo 5: Botão Flutuante -->
+    <button class="floating-button" onclick="alert('Botão flutuante clicado!')">
+        ↑
+    </button>
+
+    <!-- Conteúdo extra para demonstrar sticky -->
+    <div style="height: 1000px; padding: 20px; max-width: 800px; margin: 0 auto;">
+        <p style="margin-top: 100px;">Role para baixo para ver o cabeçalho sticky funcionar...</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+    </div>
+
+    <script>
+        // Adiciona interação simples
+        document.querySelectorAll('.exercise').forEach(exercise => {
+            exercise.addEventListener('click', function() {
+                this.style.backgroundColor = '#e8f7ff';
+                setTimeout(() => {
+                    this.style.backgroundColor = '';
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>

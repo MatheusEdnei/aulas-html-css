@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Notificações</title>
+    <link rel="stylesheet" href="notificacao.css">
+</head>
+<body>
+    <!-- Menu fixo -->
+    <div class="fixed-menu">
+        <button class="menu-btn" onclick="openModal()">
+            ⚙️ Configurações
+        </button>
+    </div>
+
+    <!-- Progress bar fixa -->
+    <div class="progress-bar">
+        <div class="progress"></div>
+    </div>
+
+    <div class="container">
+        <!-- Header com badge -->
+        <div class="header">
+            <h1>Notificações</h1>
+            <div class="notification-badge">3</div>
+        </div>
+
+        <!-- Sub-header sticky -->
+        <div class="sub-header">
+            <h2>Mensagens Não Lidas
+                <div class="tooltip">
+                    <div class="tooltip-icon">?</div>
+                    <div class="tooltip-text">
+                        Estas são notificações que ainda não foram visualizadas. Clique para marcar como lida.
+                    </div>
+                </div>
+            </h2>
+        </div>
+
+        <!-- Cards flutuantes -->
+        <div class="floating-card card-1">
+            <h3>💡 Dica</h3>
+            <p>Arraste as notificações para reorganizar</p>
+        </div>
+
+        <div class="floating-card card-2">
+            <h3>📊 Estatísticas</h3>
+            <p>3 novas • 12 lidas • 5 arquivadas</p>
+        </div>
+
+        <!-- Lista de notificações -->
+        <div class="notification-list">
+            <!-- Notificação 1 -->
+            <div class="notification-card">
+                <button class="close-btn" onclick="this.parentElement.style.display='none'">×</button>
+                <div class="status-icon status-unread"></div>
+                <h3>Novo Comentário</h3>
+                <p>Maria comentou no seu post: "Excelente conteúdo!"</p>
+                <small>Há 5 minutos</small>
+            </div>
+
+            <!-- Notificação 2 -->
+            <div class="notification-card">
+                <button class="close-btn" onclick="this.parentElement.style.display='none'">×</button>
+                <div class="status-icon status-unread"></div>
+                <h3>Atualização do Sistema</h3>
+                <p>Nova versão disponível. Clique para atualizar.</p>
+                <small>Há 2 horas</small>
+            </div>
+
+            <!-- Notificação 3 -->
+            <div class="notification-card">
+                <button class="close-btn" onclick="this.parentElement.style.display='none'">×</button>
+                <div class="status-icon status-read"></div>
+                <h3>Lembrete de Reunião</h3>
+                <p>Reunião de equipe amanhã às 10:00</p>
+                <small>Há 1 dia</small>
+            </div>
+
+            <!-- Notificação 4 -->
+            <div class="notification-card">
+                <button class="close-btn" onclick="this.parentElement.style.display='none'">×</button>
+                <div class="status-icon status-read"></div>
+                <h3>Pagamento Recebido</h3>
+                <p>Seu pagamento de R$ 1.500,00 foi processado</p>
+                <small>Há 2 dias</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="settingsModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <h2>⚙️ Configurações</h2>
+            <p>Configure suas preferências de notificação:</p>
+            
+            <div style="margin: 20px 0;">
+                <label>
+                    <input type="checkbox" checked> Notificações por email
+                </label><br>
+                <label>
+                    <input type="checkbox" checked> Notificações push
+                </label><br>
+                <label>
+                    <input type="checkbox"> Som de notificação
+                </label>
+            </div>
+
+            <button class="menu-btn" onclick="closeModal()">Salvar</button>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('settingsModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('settingsModal').classList.remove('active');
+        }
+
+        // Fecha modal ao clicar fora
+        document.getElementById('settingsModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // Simula progresso
+        let progress = 0;
+        const progressBar = document.querySelector('.progress');
+        
+        setInterval(() => {
+            progress = (progress + 1) % 100;
+            progressBar.style.width = progress + '%';
+        }, 100);
+    </script>
+</body>
+</html>

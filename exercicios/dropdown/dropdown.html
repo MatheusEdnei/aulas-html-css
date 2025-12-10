@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 2: Menu Dropdown</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* EXEMPLO 1: Dropdown básico */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            margin: 20px;
+        }
+
+        .dropdown-btn {
+            background: #3498db;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            min-width: 200px;
+            text-align: left;
+        }
+
+        .dropdown-btn::after {
+            content: '▼';
+            float: right;
+            font-size: 12px;
+        }
+
+        .dropdown-content {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 0 0 5px 5px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            padding: 12px 16px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .dropdown-item:hover {
+            background: #f8f9fa;
+        }
+
+        /* EXEMPLO 2: Dropdown à direita */
+        .dropdown-right {
+            position: relative;
+            display: inline-block;
+            margin: 20px;
+        }
+
+        .dropdown-right-content {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 0 0 5px 5px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-right:hover .dropdown-right-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* EXEMPLO 3: Menu com submenu */
+        .menu-container {
+            position: relative;
+            background: #2c3e50;
+            padding: 0;
+            border-radius: 5px;
+            margin: 40px auto;
+            width: 600px;
+        }
+
+        .main-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .menu-item {
+            position: relative;
+            padding: 15px 20px;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .menu-item:hover {
+            background: #34495e;
+        }
+
+        .submenu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 0 0 5px 5px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .menu-item:hover .submenu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .submenu-item {
+            padding: 12px 16px;
+            border-bottom: 1px solid #eee;
+            color: #333;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .submenu-item:hover {
+            background: #f8f9fa;
+        }
+
+        /* EXEMPLO 4: Modal simples */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            position: relative;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        /* EXEMPLO 5: Indicador de status */
+        .status-container {
+            position: relative;
+            display: inline-block;
+            margin: 20px;
+        }
+
+        .status-dot {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #2ecc71;
+            border: 2px solid white;
+        }
+
+        /* Painel de exercícios */
+        .exercise-panel {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 40px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .task {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border-left: 4px solid #3498db;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📋 Exercício 2: Menus Dropdown</h1>
+
+        <div class="exercise-panel">
+            <h2>1. Dropdown Simples</h2>
+            <p>O menu aparece abaixo do botão quando passa o mouse.</p>
+            <div class="dropdown">
+                <button class="dropdown-btn">Selecione uma opção</button>
+                <div class="dropdown-content">
+                    <div class="dropdown-item">Opção 1</div>
+                    <div class="dropdown-item">Opção 2</div>
+                    <div class="dropdown-item">Opção 3</div>
+                    <div class="dropdown-item">Opção 4</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-panel">
+            <h2>2. Dropdown à Direita</h2>
+            <p>O menu aparece alinhado à direita do botão.</p>
+            <div class="dropdown-right">
+                <button class="dropdown-btn">Menu à Direita</button>
+                <div class="dropdown-right-content">
+                    <div class="dropdown-item">Item A</div>
+                    <div class="dropdown-item">Item B</div>
+                    <div class="dropdown-item">Item C</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-panel">
+            <h2>3. Menu com Submenu</h2>
+            <p>Passe o mouse sobre "Produtos" para ver o submenu.</p>
+            <div class="menu-container">
+                <ul class="main-menu">
+                    <li class="menu-item">Início</li>
+                    <li class="menu-item">Sobre</li>
+                    <li class="menu-item">
+                        Produtos
+                        <div class="submenu">
+                            <div class="submenu-item">Computadores</div>
+                            <div class="submenu-item">Smartphones</div>
+                            <div class="submenu-item">Acessórios</div>
+                        </div>
+                    </li>
+                    <li class="menu-item">Contato</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="exercise-panel">
+            <h2>4. Modal (Janela Flutuante)</h2>
+            <p>Clique no botão para abrir uma janela modal.</p>
+            <button onclick="openModal()" style="padding: 12px 24px; background: #9b59b6; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                Abrir Modal
+            </button>
+        </div>
+
+        <div class="exercise-panel">
+            <h2>5. Indicador de Status</h2>
+            <p>O ponto verde indica status online, posicionado absolutamente.</p>
+            <div class="status-container">
+                <div style="width: 50px; height: 50px; background: #3498db; border-radius: 50%;"></div>
+                <div class="status-dot"></div>
+            </div>
+        </div>
+
+        <!-- Tarefas práticas -->
+        <div class="exercise-panel">
+            <h2>🎯 Tarefas Práticas</h2>
+            
+            <div class="task">
+                <h3>Tarefa 1: Criar um dropdown personalizado</h3>
+                <p>Crie um dropdown com as cores #2c3e50 para o botão e #34495e para os itens.</p>
+                <!-- Seu código aqui -->
+                <div style="position: relative; display: inline-block;">
+                    <button style="background: #2c3e50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+                        Menu
+                    </button>
+                    <div style="position: absolute; top: 100%; left: 0; background: #34495e; min-width: 150px; border-radius: 5px; opacity: 0; transition: opacity 0.3s;">
+                        <div style="padding: 10px; color: white; border-bottom: 1px solid #2c3e50;">Item 1</div>
+                        <div style="padding: 10px; color: white;">Item 2</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="task">
+                <h3>Tarefa 2: Adicionar badge de notificação</h3>
+                <p>Adicione um badge "5" no canto superior direito de um ícone de sino.</p>
+                <!-- Seu código aqui -->
+                <div style="position: relative; display: inline-block;">
+                    <div style="font-size: 30px;">🔔</div>
+                    <div style="position: absolute; top: -5px; right: -5px; background: red; color: white; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px;">5</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modal">
+        <div class="modal">
+            <button class="close-btn" onclick="closeModal()">×</button>
+            <h2>Janela Modal</h2>
+            <p>Esta é uma janela modal que aparece sobre todo o conteúdo.</p>
+            <p>Ela usa <code>position: fixed</code> para cobrir toda a tela.</p>
+            <button onclick="closeModal()" style="padding: 10px 20px; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px;">
+                Fechar
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('modal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
+
+        // Fecha modal ao clicar fora
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // Adiciona interação aos exercícios
+        document.querySelectorAll('.task').forEach(task => {
+            task.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+                this.style.transition = 'transform 0.2s';
+            });
+            
+            task.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
