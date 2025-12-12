@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transition</title>
+</head>
+<style>
+    /* div {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        transition: width 1s, height 2s, background-color 3s;
+    }
+
+    div:hover {
+        width: 300px;
+        height: 300px;
+        background-color: blue;
+    } */
+
+     div {
+        width: 30vw;
+        height: 20vh;
+        border: 1px solid black;
+        display: inline-block;
+     }
+
+     div#escrita {
+        transition: width 1.5s, height 1.5s, background-color 2s;
+     }
+
+     div#escrita:hover {
+        background-color: green;
+        width: 32vw; /* vw - view width - largura da view - largura da página*/
+        height: 25vh; /* vh - view height = altura da view - altura da página*/
+     }
+
+     div#escrita p {
+        display: none;
+        transition: display 2s;
+     }
+
+     div#escrita:hover p {
+        display: block;
+     }
+</style>
+<body>
+    <main>
+        <section>
+            <h1>Habilidades</h1>
+            <div id="escrita">
+                Escrita
+                <p>Esse texto só irá aparecer quando o usuário passar o mouse</p>
+            </div>
+            <div id="programacao">
+                Programação
+            </div>
+            <div id="dormir">
+                Dormir
+            </div>
+        </section>
+    </main>
+</body>
+</html>
