@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 1: Fundamentos do Flexbox</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .exercise {
+            background: white;
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .exercise-title {
+            color: #3498db;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+
+        .instructions {
+            background: #e8f4fc;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3498db;
+        }
+
+        /* EXEMPLO 1: Flex Container básico */
+        .flex-basic {
+            display: flex;
+            background: #ecf0f1;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .flex-item {
+            background: #3498db;
+            color: white;
+            padding: 20px;
+            margin: 5px;
+            border-radius: 3px;
+            text-align: center;
+            flex: 1;
+        }
+
+        /* EXEMPLO 2: Direção do Flex */
+        .flex-direction {
+            display: flex;
+            background: #ecf0f1;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .flex-row {
+            flex-direction: row;
+        }
+
+        .flex-column {
+            flex-direction: column;
+            height: 300px;
+        }
+
+        .direction-item {
+            background: #2ecc71;
+            color: white;
+            padding: 15px;
+            margin: 5px;
+            border-radius: 3px;
+            text-align: center;
+        }
+
+        /* EXEMPLO 3: Alinhamento Horizontal */
+        .flex-justify {
+            display: flex;
+            background: #ecf0f1;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            height: 100px;
+        }
+
+        .justify-start {
+            justify-content: flex-start;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+
+        .justify-end {
+            justify-content: flex-end;
+        }
+
+        .justify-between {
+            justify-content: space-between;
+        }
+
+        .justify-around {
+            justify-content: space-around;
+        }
+
+        .justify-item {
+            background: #e74c3c;
+            color: white;
+            padding: 15px;
+            border-radius: 3px;
+            text-align: center;
+        }
+
+        /* EXEMPLO 4: Alinhamento Vertical */
+        .flex-align {
+            display: flex;
+            background: #ecf0f1;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            height: 150px;
+        }
+
+        .align-start {
+            align-items: flex-start;
+        }
+
+        .align-center {
+            align-items: center;
+        }
+
+        .align-end {
+            align-items: flex-end;
+        }
+
+        .align-stretch {
+            align-items: stretch;
+        }
+
+        .align-item {
+            background: #9b59b6;
+            color: white;
+            padding: 15px;
+            margin: 5px;
+            border-radius: 3px;
+            text-align: center;
+        }
+
+        .tall-item {
+            height: auto;
+        }
+
+        /* EXEMPLO 5: Flex Grow, Shrink e Basis */
+        .flex-properties {
+            display: flex;
+            background: #ecf0f1;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .item-1 {
+            flex: 1;
+            background: #f39c12;
+        }
+
+        .item-2 {
+            flex: 2;
+            background: #d35400;
+        }
+
+        .item-3 {
+            flex: 3;
+            background: #c0392b;
+        }
+
+        /* Área de prática */
+        .practice-area {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+
+        .challenge {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 2px dashed #3498db;
+        }
+
+        .code-example {
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Exercício 1: Fundamentos do Flexbox</h1>
+
+        <!-- Exercício 1 -->
+        <div class="exercise">
+            <h2 class="exercise-title">1. Container Flex Básico</h2>
+            <div class="instructions">
+                <p><strong>display: flex</strong> - Transforma um elemento em um container flex</p>
+                <p>Os itens filhos se tornam flex items e se organizam automaticamente</p>
+            </div>
+            
+            <div class="flex-basic">
+                <div class="flex-item">Item 1</div>
+                <div class="flex-item">Item 2</div>
+                <div class="flex-item">Item 3</div>
+            </div>
+
+            <div class="code-example">
+                .container {<br>
+                &nbsp;&nbsp;display: flex;<br>
+                }
+            </div>
+        </div>
+
+        <!-- Exercício 2 -->
+        <div class="exercise">
+            <h2 class="exercise-title">2. Direção do Flex</h2>
+            <div class="instructions">
+                <p><strong>flex-direction:</strong> Controla a direção dos itens</p>
+                <p>Valores: row (padrão), row-reverse, column, column-reverse</p>
+            </div>
+            
+            <h3>Direção Horizontal (row)</h3>
+            <div class="flex-direction flex-row">
+                <div class="direction-item">Item 1</div>
+                <div class="direction-item">Item 2</div>
+                <div class="direction-item">Item 3</div>
+            </div>
+
+            <h3>Direção Vertical (column)</h3>
+            <div class="flex-direction flex-column">
+                <div class="direction-item">Item 1</div>
+                <div class="direction-item">Item 2</div>
+                <div class="direction-item">Item 3</div>
+            </div>
+
+            <div class="code-example">
+                .container {<br>
+                &nbsp;&nbsp;display: flex;<br>
+                &nbsp;&nbsp;flex-direction: column; /* ou row */<br>
+                }
+            </div>
+        </div>
+
+        <!-- Exercício 3 -->
+        <div class="exercise">
+            <h2 class="exercise-title">3. Alinhamento Horizontal (justify-content)</h2>
+            <div class="instructions">
+                <p><strong>justify-content:</strong> Alinha os itens no eixo principal (horizontal por padrão)</p>
+            </div>
+            
+            <h3>flex-start (padrão)</h3>
+            <div class="flex-justify justify-start">
+                <div class="justify-item">Item 1</div>
+                <div class="justify-item">Item 2</div>
+            </div>
+
+            <h3>center</h3>
+            <div class="flex-justify justify-center">
+                <div class="justify-item">Item 1</div>
+                <div class="justify-item">Item 2</div>
+            </div>
+
+            <h3>flex-end</h3>
+            <div class="flex-justify justify-end">
+                <div class="justify-item">Item 1</div>
+                <div class="justify-item">Item 2</div>
+            </div>
+
+            <h3>space-between</h3>
+            <div class="flex-justify justify-between">
+                <div class="justify-item">Item 1</div>
+                <div class="justify-item">Item 2</div>
+                <div class="justify-item">Item 3</div>
+            </div>
+
+            <h3>space-around</h3>
+            <div class="flex-justify justify-around">
+                <div class="justify-item">Item 1</div>
+                <div class="justify-item">Item 2</div>
+                <div class="justify-item">Item 3</div>
+            </div>
+
+            <div class="code-example">
+                .container {<br>
+                &nbsp;&nbsp;display: flex;<br>
+                &nbsp;&nbsp;justify-content: center; /* ou flex-start, flex-end, space-between, space-around */<br>
+                }
+            </div>
+        </div>
+
+        <!-- Exercício 4 -->
+        <div class="exercise">
+            <h2 class="exercise-title">4. Alinhamento Vertical (align-items)</h2>
+            <div class="instructions">
+                <p><strong>align-items:</strong> Alinha os itens no eixo cruzado (vertical por padrão)</p>
+            </div>
+            
+            <h3>flex-start</h3>
+            <div class="flex-align align-start">
+                <div class="align-item">Início</div>
+                <div class="align-item tall-item">Item Alto</div>
+                <div class="align-item">Item</div>
+            </div>
+
+            <h3>center</h3>
+            <div class="flex-align align-center">
+                <div class="align-item">Centro</div>
+                <div class="align-item tall-item">Item Alto</div>
+                <div class="align-item">Item</div>
+            </div>
+
+            <h3>flex-end</h3>
+            <div class="flex-align align-end">
+                <div class="align-item">Final</div>
+                <div class="align-item tall-item">Item Alto</div>
+                <div class="align-item">Item</div>
+            </div>
+
+            <h3>stretch (padrão)</h3>
+            <div class="flex-align align-stretch">
+                <div class="align-item" style="height: auto;">Stretch</div>
+                <div class="align-item" style="height: auto;">Cresce</div>
+                <div class="align-item" style="height: auto;">Item</div>
+            </div>
+
+            <div class="code-example">
+                .container {<br>
+                &nbsp;&nbsp;display: flex;<br>
+                &nbsp;&nbsp;align-items: center; /* ou flex-start, flex-end, stretch */<br>
+                }
+            </div>
+        </div>
+
+        <!-- Exercício 5 -->
+        <div class="exercise">
+            <h2 class="exercise-title">5. Flex Grow, Shrink e Basis</h2>
+            <div class="instructions">
+                <p><strong>flex:</strong> shorthand para flex-grow, flex-shrink e flex-basis</p>
+                <p>flex: 1 = flex-grow: 1, flex-shrink: 1, flex-basis: 0%</p>
+            </div>
+            
+            <div class="flex-properties">
+                <div class="flex-item item-1">flex: 1</div>
+                <div class="flex-item item-2">flex: 2 (2x maior)</div>
+                <div class="flex-item item-3">flex: 3 (3x maior)</div>
+            </div>
+
+            <div class="code-example">
+                .item-1 {<br>
+                &nbsp;&nbsp;flex: 1; /* Cresce 1 vez */<br>
+                }<br><br>
+                .item-2 {<br>
+                &nbsp;&nbsp;flex: 2; /* Cresce 2 vezes mais */<br>
+                }
+            </div>
+        </div>
+
+        <!-- Área de prática -->
+        <div class="practice-area">
+            <h2>🧪 Desafios Práticos</h2>
+            
+            <div class="challenge">
+                <h3>Desafio 1: Criar um menu horizontal</h3>
+                <p>Crie um menu com 4 itens igualmente espaçados e centralizado verticalmente.</p>
+                <!-- Seu código aqui -->
+                <div style="display: flex; justify-content: space-between; align-items: center; background: #ecf0f1; padding: 15px; border-radius: 5px;">
+                    <div style="background: #3498db; color: white; padding: 10px 20px; border-radius: 3px;">Home</div>
+                    <div style="background: #3498db; color: white; padding: 10px 20px; border-radius: 3px;">Sobre</div>
+                    <div style="background: #3498db; color: white; padding: 10px 20px; border-radius: 3px;">Serviços</div>
+                    <div style="background: #3498db; color: white; padding: 10px 20px; border-radius: 3px;">Contato</div>
+                </div>
+            </div>
+
+            <div class="challenge">
+                <h3>Desafio 2: Cards com alturas diferentes</h3>
+                <p>Crie 3 cards onde o do meio tem altura dupla e todos estão alinhados ao topo.</p>
+                <!-- Seu código aqui -->
+                <div style="display: flex; align-items: flex-start; background: #ecf0f1; padding: 15px; border-radius: 5px; gap: 10px;">
+                    <div style="background: #2ecc71; color: white; padding: 20px; border-radius: 3px; flex: 1;">Card 1</div>
+                    <div style="background: #2ecc71; color: white; padding: 40px; border-radius: 3px; flex: 1;">Card 2 (Alto)</div>
+                    <div style="background: #2ecc71; color: white; padding: 20px; border-radius: 3px; flex: 1;">Card 3</div>
+                </div>
+            </div>
+
+            <div class="challenge">
+                <h3>Desafio 3: Layout de preços</h3>
+                <p>Crie 3 colunas onde a do meio é 50% mais larga e todas estão centralizadas verticalmente.</p>
+                <!-- Seu código aqui -->
+                <div style="display: flex; align-items: center; background: #ecf0f1; padding: 15px; border-radius: 5px; gap: 10px; height: 150px;">
+                    <div style="background: #9b59b6; color: white; padding: 20px; border-radius: 3px; flex: 1;">R$ 99</div>
+                    <div style="background: #9b59b6; color: white; padding: 30px; border-radius: 3px; flex: 1.5;">R$ 149</div>
+                    <div style="background: #9b59b6; color: white; padding: 20px; border-radius: 3px; flex: 1;">R$ 199</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Adiciona interatividade aos exemplos
+        document.querySelectorAll('.flex-item, .direction-item, .justify-item, .align-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+                this.style.transition = 'transform 0.2s';
+                this.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+                this.style.boxShadow = 'none';
+            });
+        });
+
+        // Mostra código quando clica nos desafios
+        document.querySelectorAll('.challenge').forEach(challenge => {
+            challenge.addEventListener('click', function() {
+                const code = this.querySelector('div[style]');
+                if (code) {
+                    const style = code.getAttribute('style');
+                    alert('Código CSS usado:\n\n' + style);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
